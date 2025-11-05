@@ -20,9 +20,22 @@ public class Counter {
 		// Send messages from multiple threads in parallel
 		final ExecutorService exec = Executors.newFixedThreadPool(numThreads);
 
-		for (int i = 0; i < numMessages; i++) {
-			exec.submit(() -> counter.tell(new SimpleMessage(), ActorRef.noSender()));
-		}
+        // Test for exercise 1: send increment and decrement messages
+//		for (int i = 0; i < numMessages; i++) {
+//            exec.submit(() -> counter.tell(new SimpleMessage(true), ActorRef.noSender()));  // increase +1
+//            exec.submit(() -> counter.tell(new SimpleMessage(false), ActorRef.noSender())); // decrease -1
+//        }
+
+        // Test for exercise 2:
+        counter.tell(new SimpleMessage(false), ActorRef.noSender()); // decrement
+        counter.tell(new SimpleMessage(false), ActorRef.noSender()); // decrement
+        counter.tell(new SimpleMessage(true), ActorRef.noSender());  // increment
+        counter.tell(new SimpleMessage(false), ActorRef.noSender()); // decrement
+        counter.tell(new SimpleMessage(true), ActorRef.noSender());  // increment
+        counter.tell(new SimpleMessage(true), ActorRef.noSender());  // increment
+
+
+
 		
 		// Wait for all messages to be sent and received
 		try {
