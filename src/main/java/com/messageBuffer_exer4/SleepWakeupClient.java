@@ -4,7 +4,7 @@ import akka.actor.*;
 
 public class SleepWakeupClient extends AbstractActor {
     public static void main(String[] args) {
-        // 1. Create ActorSystemc
+        // 1. Create ActorSystem
         final ActorSystem system = ActorSystem.create("SleepWakeupClient");
 
         // 2. Create server actor and client actor
